@@ -1,5 +1,5 @@
 -- Drop table if exists
-DROP TABLE departments;
+DROP TABLE IF EXISTS departments;
 
 -- CREAT TBALE departments
 CREATE TABLE departments (
@@ -7,25 +7,25 @@ CREATE TABLE departments (
 			dept_name VARCHAR NOT NULL
            );
 -- import date from departments.csv			
-SELECT * FROM departments
--- -----------------------------------------------------------------
--- Drop table if exists
-DROP TABLE employees;
+SELECT * FROM departments;
 
--- CREAT TABLE dept_manager
+--================================================================
+-- Drop table if exists
+DROP TABLE IF EXISTS employees;
+
+-- CREAT TABLE employees
 CREATE TABLE employees (
 			emp_no INT NOT NULL PRIMARY KEY,
-			birth_date DATE,
-			first_name VARCHAR,
-			last_name VARCHAR,
-			gender VARCHAR(1) NOT NULL,
-			hire_date DATE);
+			birth_date DATE NOT NULL,
+			first_name VARCHAR NOT NULL,
+			last_name VARCHAR NOT NULL,
+			gender VARCHAR NOT NULL,
+			hire_date DATE NOT NULL);
 -- import date from departments.csv
-select * FROM employees
--- ---------------------------------------------------------
--- Drop table if exists
-DROP TABLE dept_emp;
+SELECT * FROM employees;
 
+--==================================================================
+DROP TABLE IF EXISTS dept_emp;
 -- CREATE TABLE dept_emp
 CREATE TABLE dept_emp (
 			emp_no INT NOT NULL ,
@@ -36,49 +36,48 @@ CREATE TABLE dept_emp (
             FOREIGN KEY (dept_no) REFERENCES departments(dept_no)
            );
 -- import date from departments.csv			
-select * FROM dept_emp
--- COPY dept_emp
--- FROM 'C:\Users\Mason\Desktop\USC Bootcamp\sql-challenge\data\dept_emp.csv'
--- DELIMITER ',' CSV HEADER;
--- -----------------------------------------------------
+SELECT * FROM dept_emp;
+
+--==========================================================================
 -- Drop table if exists
-DROP TABLE dept_manager;
+DROP TABLE IF EXISTS dept_manager;
 
 -- CREAT TABLE dept_manager
 CREATE TABLE dept_manager (
-			dept_no VARCHAR,
-			emp_no INT,
-			from_date DATE,
-			to_date DATE,
+			dept_no VARCHAR NOT NULL,
+			emp_no INT NOT NULL,
+			from_date DATE NOT NULL,
+			to_date DATE NOT NULL,
             FOREIGN KEY (dept_no) REFERENCES departments(dept_no)
            );
 -- import date from departments.csv
-select * FROM dept_manager
--- --------------------------------------------------------
+SELECT * FROM dept_manager;
+--===========================================================================
 -- Drop table if exists
-DROP TABLE salaries;
+DROP TABLE IF EXISTS salaries;
 
 -- CREAT TABLE dept_manager
 CREATE TABLE salaries (
-			emp_no INT,
-			salary INT,
-			from_date DATE,
-			to_date DATE,
+			emp_no INT NOT NULL,
+			salary INT NOT NULL,
+			from_date DATE NOT NULL,
+			to_date DATE NOT NULL,
             FOREIGN KEY (emp_no) REFERENCES employees(emp_no)
             );
 -- import date from departments.csv
-select * FROM salaries
+SELECT * FROM salaries;
 -- ---------------------------------------------------------
 -- Drop table if exists
-DROP TABLE titles;
+DROP TABLE IF EXISTS titles;
 
 -- CREAT TABLE dept_manager
 CREATE TABLE titles (
-			emp_no INT,
-			title VARCHAR,
-			from_date DATE,
-			to_date DATE,
+			emp_no INT NOT NULL,
+			title VARCHAR NOT NULL,
+			from_date DATE NOT NULL,
+			to_date DATE NOT NULL,
             FOREIGN KEY (emp_no) REFERENCES employees(emp_no)
             );
 -- import date from departments.csv
-select * FROM titles
+SELECT * FROM titles;
+
